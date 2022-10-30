@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "shortcut icon" href = "../static/circle.png">
+    {% for s in specs %}
+    <title> {{ s.NAME }} </title>
+    {% endfor %}
+    <style>
+        @font-face
+        {
+            font-family: gg;
+            src: url('../static/font.ttf');
+        }
+
+        body
+        {
+            margin: 0;
+            font-family: gg;
+            background-color: #fbfbf8;
+            margin-bottom: 1cm;
+            overflow-x: hidden;
+        }
+
+        h1
+        {
+            text-align: center;
+        }
+
+        #navbar
+        {
+            display: inline;
+            background-color: rgba(9, 103, 179, 0.915);
+            width: 100% !important;
+            margin-top: 0px !important;
+            display: block;
+            padding: 10px;
+            padding-top: 0px;
+            position:sticky;
+            top: 0;
+            z-index: 100;
+            transition: 0.4s;
+        }
+        
+        .navbar-links
+        {
+            text-decoration: none;
+            color: white;
+            margin: 0;
+            margin-left: -5px;
+            padding: 8px;
+            padding-top: 15px;
+            padding-right: 20px;
+            padding-left: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            border-left:  1px solid rgba(255,255,255,0.3);
+        }
+
+        .navbar-links:hover
+        {
+            background-color: #2898ee;
+            transition: background-color 100ms linear;
+        }
+
+        #logo
+        {
+            margin-left: 3px;
+            position: relative;
+            z-index: 1;
+            top: 5.5px;
+        }
+
+        #grande
+        {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        ul 
+        {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: inline;
+        }
+
+        #links
+        {
+            margin-left: 2%;
+        }
+
+        ul li
+        {
+            display: inline;
+            margin:0;
+        }
+
+        h1
+        {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 60%;
+        }
+
+        #not-navbar
+        {
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-top: 2cm;
+        }
+
+        .boxing
+        {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(9, 103, 179, 0.915);
+            width: 500px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        table
+        {
+            border-radius: 10px;
+            padding: 10px;
+            color: black;
+            background-color: #fbfbf8;
+            border-radius: 10px;
+            width: 500px;
+        }
+
+
+        td
+        {
+            border-bottom: 1px solid (186, 168, 16rgb8);
+            padding:10px;
+        }
+
+        #features
+        {
+            position: relative;
+            bottom: 1044px;
+            left: 800px;
+        }
+
+        #userimg
+        {
+            /* position: relative;
+            left: 800px;
+            top: 7px; */
+        }
+
+        #username
+        {
+            color: white;
+            position: relative;
+            /* left: 820px; */
+        }
+
+        #userlink
+        {
+            position: relative;
+            left: 400px;
+            border: none;
+            padding-top: 15px;
+        }
+
+        #userlink:hover
+        {
+            background-color: rgba(9, 103, 179, 0.915);
+        }
+
+        #slide
+        {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        #btn-ss
+        {
+            height: 30px;
+            text-align: center;
+            position: relative;
+            left: 979px;
+            bottom: 30px;
+            border-radius: 0;
+            background-color: rgba(0, 0, 0, 0.356);
+            border: none;
+            color: rgba(255, 255, 255, 0.493);
+            visibility: hidden;
+            width: 30px;
+            font-size: 18px;
+        }
+
+        #btn-ss:hover
+        {
+            visibility: visible;
+            color: white;
+            transition: color 100ms;
+        }
+        #slide:hover~#btn-ss
+        {
+            visibility: visible;
+            transition: visibility 5s linear;
+        }
+
+        #btn-ss2
+        {
+            height: 30px;
+            text-align: center;
+            position: relative;
+            left: 475px;
+            bottom: 30px;
+            border-radius: 0;
+            background-color: rgba(0, 0, 0, 0.356);
+            border: none;
+            color: rgba(255, 255, 255, 0.493);
+            visibility: hidden;
+            width: 30px;
+            font-size: 18px;
+        }
+
+        #btn-ss2:hover
+        {
+            visibility: visible;
+            color: white;
+            transition: color 100ms;
+        }
+        #slide:hover~#btn-ss2
+        {
+            visibility: visible;
+            transition: visibility 5s linear;
+        }
+    </style>
+</head>
+<body>
+    <div id = "navbar"> 
+        <ul>   
+            <li><a href = "Home"><img width = "110px" id = "logo" src = "../static/whitelogo.png"></a></li>
+        </ul>
+        <ul id = "links">
+            <li><a class = "navbar-links" href = "Home">Home</a></li>
+            <li><a class = "navbar-links" href = "Cars">Cars</a></li>
+            <li><a class = "navbar-links" href = "Reviews">Reviews</a></li>
+            <li><a class = "navbar-links" href = "Comparison">Comparison</a></li>
+            <li><a class = "navbar-links" href = "On-Road Price">On-Road Price</a></li>
+            <li><a class = "navbar-links" href = "Contact">Contact</a></li>
+            <li><a class = "navbar-links" id = "userlink" href = "Wishlist"><img id = "userimg" width = "30px" src = "../static/usericon.png"><span id = "username">{{ user_name_recieved }}</span></a></li>
+        </ul>
+     </div>
+     {% for s in specs %}
+     <h1>{{ s.COMPANY + ' ' +  s.NAME }}</h1>
+     <img id = "slide" class = "car-imgs"  height= "250px" width = "500px" id = "grande" src = "{{ '../static/' + s.NAME }} {{ s.MODEL + '.png' }}">   
+     {% endfor %}
+    {% for s in specs %}
+        <button id = "btn-ss"> → </button>
+        <button id = "btn-ss2"> ← </button>
+        <h2 style = "text-align: center;">PKR {{ s.Price }}</h2>     
+    {% endfor %}
+    <div id = "not-navbar">
+        <h2>Specifications</h2>
+        <div class = "boxing">
+
+            <h3>Dimensions</h3>
+            <table id = "dimensions">
+                    {% for s in specs %}
+                <tr>
+                    <td>Boot Capacity</td>
+                    <td>{{ s.BOOTCAPACITY }}</td>
+                </tr>
+                <tr>
+                    <td>Seating Capacity</td>
+                    <td>{{ s.SEATINGCAPACITY }}</td>
+                </tr>
+                <tr>
+                    <td>Tyre Size</td>
+                    <td>{{ s.TYRESIZE }}</td>
+                </tr>
+                <tr>
+                    <td>Ground Clearance</td>
+                    <td>{{ s.GROUNDCLEARENCE }}</td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td>{{ s.TYPE }}</td>
+                </tr>
+                {% endfor %}
+            
+            </table>
+        </div>
+
+        <div class = "boxing">
+
+            <h3>Engine/Motor</h3>
+                <table id = "engine">
+                    {% for s in specs %}
+                    <tr>
+                        <td>Engine</td>
+                    <td>{{ s.ENGINE }}</td>
+                </tr>
+                <tr>
+                    <td>Horse Power</td>
+                    <td>{{ s.HORSEPOWER }}</td>
+                </tr>
+                <tr>
+                    <td>Fuel Type</td>
+                    <td>{{ s.FUELTYPE }}</td>
+                </tr>
+                <tr>
+                    <td>Torque (Nm)</td>
+                    <td>{{ s.TORQUE }}</td>
+                </tr>
+                <tr>
+                    <td>Top Speed (km/h)</td>
+                    <td>{{ s.TOPSPEED }}</td>
+                </tr>
+                <tr>
+                    <td>Fuel Economy (km/L)</td>
+                    <td>{{ s.FUELAVG }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class = "boxing">
+            <h3>Transmission</h3>
+            <table id = "transmission">
+                {% for s in specs %}
+                
+                <tr>
+                    <td>Transmission Type</td>
+                    <td>{{ s.TRANSMISSION }}</td>
+                </tr>
+                {% endfor %}
+                
+            </table>
+        </div>
+
+        <div class = "boxing">
+
+            <h3>Model</h3>
+            <table id = "model">
+                {% for s in specs %} 
+                <tr>
+                    <td>Year</td>
+                    <td>{{ s.MODEL }}</td>
+                    
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div id = "features">
+            <h2>Features</h2>
+            <div class = "boxing">
+                <h3></h3>
+                <table id = "feature">
+                    {% for s in specs %} 
+                    <tr>
+                        <td>Air Bags</td>
+                        <td class = "tick">{{ s.AIRBAGS }}</td>
+                    </tr>
+                    <tr>
+                        <td>Sun Roof</td>
+                        <td class = "tick">{{ s.SUNROOF }}</td>
+                    </tr>
+                    <tr>
+                        <td>ABS Brakes</td>
+                        <td class = "tick">{{ s.ABSBRAKES }}</td>
+                    </tr>
+                    <tr>
+                        <td>Infotainment</td>
+                        <td class = "tick">{{ s.Infotainment }}</td>
+                    </tr>
+                    <tr>
+                        <td>Climate Control</td>
+                        <td class = "tick">{{ s.ClimateControl }}</td>
+                    </tr>
+                    <tr>
+                        <td>Cruise Control</td>
+                        <td class = "tick">{{ s.CruiseControl }}</td>
+                    </tr>
+                    <tr>
+                        <td>Traction</td>
+                        <td class = "tick">{{ s.Traction }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parking Sense</td>
+                        <td class = "tick">{{ s.ParkingSense }}</td>
+                    </tr>
+                    <tr>
+                        <td>Push Start</td>
+                        <td class = "tick">{{ s.PushStart }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        var logo = document.getElementById("logo");
+        var links = document.getElementsByClassName("navbar-links");
+        var username = document.getElementById("username");
+        var slider  = document.getElementById("slide");
+        console.log(slider.src);
+        
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() 
+        {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) 
+            {
+                document.getElementById("navbar").style.backgroundColor = "#fbfbf8";
+                document.getElementById("navbar").style.opacity = "1";
+        
+                document.getElementById("navbar").style.opacity = "1";
+                logo.src = "../static/logo.png";
+                username.style.color = "black";
+                for (var i = 0; i < links.length; i++)
+                {
+                    links[i].style.color = "black";
+                    links[i].style.borderLeft = "1px solid black";
+                    links[i].style.borderRight = "1px solid black";
+                    links[i].style.opacity = "1";
+                }
+                document.getElementById("userlink").style.border = "none";
+            } 
+            else 
+            {
+                document.getElementById("navbar").style.backgroundColor = "rgba(9, 103, 179, 0.915)";
+                logo.src = "../static/whitelogo.png";
+                username.style.color = "white";
+                for (var i = 0; i < links.length; i++)
+                {
+                    links[i].style.color = "white";
+                    links[i].style.borderLeft = "1px solid rgba(255,255,255,0.3)";
+                    links[i].style.borderRight = "1px solid rgba(255,255,255,0.3)";
+                }
+                
+                document.getElementById("userlink").style.border = "none";
+            }
+        }
+        var arr = document.getElementsByClassName("tick");
+        for (var i = 0; i < arr.length; i++)
+        {
+            if (arr[i].textContent === 'True')
+            {
+                arr[i].textContent = '✓';
+            }
+
+            else
+            {
+                arr[i].textContent = '✘';
+            }
+
+        }
+
+        var size = 3;
+        var count = 0;
+        var theBtn = document.getElementById("btn-ss");
+        
+        var nextSlide = function()
+        {
+            var slide  = document.getElementById("slide");
+            var str = '';
+            if ((count + 1) % size === 0)
+            {
+                for (var i = 0; slide.src[i] !== '.' || slide.src[i + 1] !== 'p'; i++)
+                {
+                    str += slide.src[i];
+                }
+
+                console.log(str);
+
+                var str2 = '';
+                for (var i = 0; i < str.length - 4; i++)
+                {
+                    str2 += str[i];
+                }
+                console.log(str2);
+
+                str2 += '.png';
+                slide.src = str2;
+            }
+
+            else
+            {
+                var i = 0;
+                while (slide.src[i] !== '.'  || slide.src[i + 1] !== 'p')
+                {
+                    str += slide.src[i];
+                    i++;
+                }
+                
+                if (count === 0)
+                {
+                    str += ' ' + count + '.png';
+                    slide.src = str;
+                }
+    
+                else
+                {
+                    var str2 = '';
+                    for (var j = 0; j < str.length - 4; j++)
+                    {
+                        str2 += str[j];
+                    }
+
+                    str2 += ' ' + count + '.png';
+                    slide.src = str2;
+                }
+            }
+            
+            console.log(slide.src);
+            count = (count + 1) % size;
+            console.log(count);
+            stopslideshow();
+        }
+
+        theBtn.addEventListener("click", nextSlide);
+
+        var theBtn2 = document.getElementById("btn-ss2");
+
+        var prevSlide = function()
+        {
+            var slide  = document.getElementById("slide");
+            console.log(slide.src);
+            var str = '';
+            
+            if (count === 0)
+            {
+                for (var i = 0; slide.src[i] !== '.' || slide.src[i + 1] !== 'p'; i++)
+                {
+                    str += slide.src[i];
+                }
+                
+                var a = size - 2;
+                str += ' ' + a + '.png';
+                slide.src = str;
+                count = (size - 1 - count) % size;
+            }
+
+            else if ((count - 1) % size === 0)
+            {
+                for (var i = 0; slide.src[i] !== '.' || slide.src[i + 1] !== 'p'; i++)
+                {
+                    str += slide.src[i];
+                }
+
+                console.log(str);
+
+                var str2 = '';
+                for (var i = 0; i < str.length - 4; i++)
+                {
+                    str2 += str[i];
+                }
+                console.log(str2);
+
+                str2 += '.png';
+                slide.src = str2;
+                count = (count - 1) % size;
+            }
+
+            else
+            {
+                console.log(count);
+                var i = 0;
+                while (slide.src[i] !== '.'  || slide.src[i + 1] !== 'p')
+                {
+                    str += slide.src[i];
+                    i++;
+                }
+                
+                var str2 = '';
+                for (var j = 0; j < str.length - 4; j++)
+                {
+                    str2 += str[j];
+                }
+                
+                var a = count - 2;
+                str2 += ' ' + a + '.png';
+                slide.src = str2;
+                console.log(slide.src);
+                count = (size - count) % size;
+            }
+
+            stopslideshow();
+        }
+
+        theBtn2.addEventListener("click", prevSlide);
+
+        function slideshow()
+        {
+            var slide  = document.getElementById("slide");
+            var str = '';
+            if ((count + 1) % size === 0)
+            {
+                for (var i = 0; slide.src[i] !== '.' || slide.src[i + 1] !== 'p'; i++)
+                {
+                    str += slide.src[i];
+                }
+
+                console.log(str);
+                
+                var str2 = '';
+                for (var i = 0; i < str.length - 4; i++)
+                {
+                    str2 += str[i];
+                }
+                console.log(str2);
+
+                str2 += '.png';
+                slide.src = str2;
+            }
+
+            else
+            {
+                var i = 0;
+                while (slide.src[i] !== '.'  || slide.src[i + 1] !== 'p')
+                {
+                    str += slide.src[i];
+                    i++;
+                }
+                
+                if (count === 0)
+                {
+                    str += ' ' + count + '.png';
+                    slide.src = str;
+                }
+                
+                else
+                {
+                    var str2 = '';
+                    for (var j = 0; j < str.length - 4; j++)
+                    {
+                        str2 += str[j];
+                    }
+
+                    str2 += ' ' + count + '.png';
+                    slide.src = str2;
+                }
+            }
+            
+            console.log(slide.src);
+            count = (count + 1) % size;
+            console.log(count);
+        }
+
+        const timeout = window.setInterval(slideshow, 4000);
+        
+        var stopslideshow = function()
+        {
+            window.clearInterval(timeout);
+        }
+        
+    </script>
+</body>
+</html>

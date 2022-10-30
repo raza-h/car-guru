@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "shortcut icon" href = "../static/circle.png">
+    <title>Comparison</title>
+    <style>
+        @font-face
+        {
+            font-family: gg;
+            src: url('../static/font.ttf');
+        }
+
+        body
+        {
+            margin: 0;
+            font-family: gg;
+            background-color: #fbfbf8;
+            overflow-x:hidden;
+        }
+
+        #navbar
+        {
+            display: inline;
+            background-color: rgba(9, 103, 179, 0.915);
+            width: 100% !important;
+            margin-top: 0px !important;
+            display: block;
+            padding: 10px;
+            padding-top: 0px;
+            position:sticky;
+            top: 0;
+            z-index: 100;
+            transition: 0.4s;
+        }
+        
+        .navbar-links
+        {
+            text-decoration: none;
+            color: white;
+            margin: 0;
+            margin-left: -5px;
+            padding: 8px;
+            padding-top: 15px;
+            padding-right: 20px;
+            padding-left: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            border-left:  1px solid rgba(255,255,255,0.3);
+        }
+
+        .navbar-links:hover
+        {
+            background-color: #2898ee;
+            transition: background-color 100ms linear;
+        }
+
+        #logo
+        {
+            margin-left: 3px;
+            position: relative;
+            z-index: 1;
+            top: 5.5px;
+        }
+
+        #grande
+        {
+            margin-left: 20%;
+        }
+
+        ul 
+        {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: inline;
+        }
+
+        #links
+        {
+            margin-left: 2%;
+        }
+
+        ul li
+        {
+            display: inline;
+            margin:0;
+        }
+
+        .boxes
+        {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            border: 2px solid rgb(94, 31, 160);
+            margin-top: 2%;
+            padding: 0px 10px 0px 10px;
+            border-radius:7px;
+            color: white;
+            background-color: #2898ee;/*rgb(162, 117, 117) */
+        }
+
+        .page-links
+        {
+            text-decoration: none;
+        }
+
+        .page-links:hover
+        {
+            opacity: 0.7;
+            transition: opacity 3s linear;
+        }
+
+        .car-imgs
+        {
+            position: relative;
+            bottom: 40px;
+            left: 40px;
+        }
+
+        #not-navbar
+        {
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-top: 2cm;
+        }
+
+        
+        .boxing
+        {
+            margin-top: 1cm;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(9, 103, 179, 0.915);
+            width: 50%;
+            margin-bottom: 10px;
+            color: white;
+            /* margin-left: auto;
+            margin-right: auto;
+            display: block; */
+        }
+
+        table
+        {
+            border-radius: 10px;
+            padding: 10px;
+            color: black;
+            background-color: #fbfbf8;
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 100%;
+            /* width: 150%; */
+            /* padding-left: 100px; */
+            /* background-color: rgba(9, 103, 179, 0.915); */
+        }
+
+        th
+        {
+            /* text-align: left; */
+            /* padding-left: 50px; */
+            /* padding-right:10px; */
+            padding: 20px;
+            width: 33%;
+        }
+
+        td
+        {
+            padding: 20px;
+            /* padding-left: 50px; */
+            /* padding-right:10px; */
+            width: 33%;
+        }
+
+        .cars_dd
+        {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 60%;
+            border: 2px solid rgba(9, 103, 179, 0.915);
+            height: 50px;
+            border-radius: 10px;
+            text-align: center;
+            /* margin-top: 2cm; */
+            font-family: gg;
+            font-size: 18px;
+            color: rgba(9, 103, 179, 0.915);
+        }
+
+        
+        #button
+        {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            /* margin-top: 10px;
+            margin-bottom: 20px; */
+            background-color: rgba(9, 103, 179, 0.915);
+            border: 3px solid rgb(218, 222, 232);
+            color: white;
+            width: 60%;
+            height: 50px;
+            border-radius: 10px;
+            font-family: gg;
+            font-size: 18px;
+        }
+
+        #userimg
+        {
+            /* position: relative;
+            left: 800px;
+            top: 7px; */
+        }
+
+        #username
+        {
+            color: white;
+            position: relative;
+            /* left: 820px; */
+        }
+
+        h1
+        {
+            margin-top: 1cm;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            text-align: center;
+        }
+
+        tr:nth-child(even) 
+        {
+            background: #CCC
+        }
+
+        tr:nth-child(odd) 
+        {
+            background: #FFF
+        }
+
+        .features
+        {
+            position: relative;
+            left: 750px;
+            bottom: 1070px;
+            width: 40%;
+        }
+
+        .price
+        {   
+            width: 40%;
+        }
+
+        .price td
+        {   
+            width: 50%;
+        }
+
+        #c1
+        {
+            position: relative;
+            left: 200px;
+        }
+
+        #c2
+        {
+            position: relative;
+            left: 300px;
+        }
+
+        #carsimgs
+        {
+            margin-top: 200px;
+        }
+
+        #form
+        {
+            margin-bottom: 1cm;
+        }
+
+        #vs
+        {
+            position: absolute;
+            left: 745px;
+            bottom: 130px;
+            font-size: 20px;
+        }
+
+        #userlink
+        {
+            position: relative;
+            left: 400px;
+            border: none;
+            padding-top: 15px;
+        }
+
+        #userlink:hover
+        {
+            background-color: rgba(9, 103, 179, 0.915);
+        }
+    </style>
+</head>
+<body>
+    <div id = "navbar"> 
+        <ul>   
+        <li><a href = "Home"><img width = "110px" id = "logo" src = "../static/whitelogo.png"></a></li>
+        </ul>
+        <ul id = "links">
+            <li><a class = "navbar-links" href = "Home">Home</a></li>
+            <li><a class = "navbar-links" href = "Cars">Cars</a></li>
+            <li><a class = "navbar-links" href = "Reviews">Reviews</a></li>
+            <li><a class = "navbar-links" href = "#">Comparison</a></li>
+            <li><a class = "navbar-links" href = "On-Road Price">On-Road Price</a></li>
+            <li><a class = "navbar-links" href = "Contact">Contact</a></li>
+            <li><a class = "navbar-links" id = "userlink" href = "Wishlist"><img id = "userimg" width = "30px" src = "../static/usericon.png"><span id = "username">{{ user_name_recieved }}</span></a></li>
+        </ul>
+     </div>
+
+
+    <h1>Comparison</h1>
+    <br>
+    <hr>
+    
+     <div id = "not-navbar">
+
+         <form id = "form" action="{{ url_for("comparison")}}" method="post">
+             <div class = "">
+                 <!-- <label for="cars">Choose a car:</label> -->
+                 <select name="cars_dropdown1" class = "cars_dd" id="cars">
+                    <option value="none" selected disabled hidden>Select a Car</option>
+                     {% for n in ddm %}
+                     <option value="{{ n.CarName }}">{{ n.CarName }}</option>
+                     
+                     {% endfor %}
+                     
+                    </select>
+                    <br>
+                    <!-- <label for="cars">Choose a car:</label> -->
+                    <select name="cars_dropdown2" class = "cars_dd" id="cars">
+                        <option value="none" selected disabled hidden>Select a Car</option>
+                        {% for n in ddm %}
+                        <option value="{{ n.CarName }}">{{ n.CarName }}</option>
+                        
+                        {% endfor %}
+                        
+                    </select>
+                    <br>
+                    <button id = "button" type = "submit" >Get Comparison</button>
+                </div> 
+            </form>
+            <div id = "carsimg">
+                {% for n in car1 %}
+                <img title = "{{ n.Name }}" id = "c1" width = "400px" src = "{{ '../static/' + n.Name + ' ' + n.Model + '.png' }}">
+                {% endfor %}
+                {% for n in car2 %}
+                <strong><span id = "vs">VS</span></strong>
+                <img title = "{{ n.Name }}" id = "c2" width = "400px" src = "{{ '../static/' + n.Name + ' ' + n.Model + '.png' }}">
+                {% endfor %}
+            </div>
+        {% for n in car1 %}
+            <div class = "boxing">
+                <table class="table">
+        <tbody> 
+            <tr>
+    {% endfor %}
+                {% for n in car1 %}
+                <th>Specifications</th>
+                <th>{{ n.Name }}</th>
+                {% endfor %}
+                {% for n in car2 %}
+                <th>{{ n.Name }}</th>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Engine</td>
+                <td>{{ n.Engine }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.Engine }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Type</td>
+                <td>{{ n.Type }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.Type }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Model</td>
+                <td>{{ n.Model }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.Model }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Company</td>
+                <td>{{ n.Company }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.Company }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Fuel Type</td>
+                <td>{{ n.FuelType }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.FuelType }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Transmission</td>
+                <td>{{ n.Transmission }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.Transmission }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Horse Power</td>
+                <td>{{ n.HorsePower }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.HorsePower }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Torque (Nm)</td>
+                <td>{{ n.Torque }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.Torque }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Boot Capacity</td>
+                <td>{{ n.BootCapacity }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.BootCapacity }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Top Speed (km/h)</td>
+                <td>{{ n.TopSpeed }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.TopSpeed }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Fuel Economy (km/L)</td>
+                <td>{{ n.FuelAvg }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.FuelAvg }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Seating Capacity</td>
+                <td>{{ n.SeatingCapacity }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.SeatingCapacity }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Tyre Size</td>
+                <td>{{ n.TyreSize }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.TyreSize }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Ground Clearance</td>
+                <td>{{ n.GroundClearence }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.GroundClearence }}</td>
+                {% endfor %}
+
+            </tr>
+            <tr>
+                {% for n in car1 %}
+                <td>Price</td>
+                <td>{{ n.Price }}</td>
+                {% endfor %}
+                {% for n in car2 %}
+                <td>{{ n.Price }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    {% for n in car1 %}
+    <div class = "boxing features">
+        <table class="table" id = "ftable">
+            <tbody> 
+                <tr>
+        {% endfor %}
+                    {% for n in car1 %}
+                    <th>Features</th>
+                    <th>{{ n.Name }}</th>
+                    {% endfor %}
+                    {% for n in car2 %}
+                    <th>{{ n.Name }}</th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for n in car1 %}
+                    <td>Air Bags</td>
+                    <td>{{ n.AirBags }}</td>
+                    {% endfor %}
+                    {% for n in car2 %}
+                    <td>{{ n.AirBags }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for n in car1 %}
+                    <td>Sun Roof</td>
+                    <td>{{ n.SunRoof }}</td>
+                    {% endfor %}
+                    {% for n in car2 %}
+                    <td>{{ n.SunRoof }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for n in car1 %}
+                    <td>ABS Brakes</td>
+                    <td>{{ n.ABSbrakes }}</td>
+                    {% endfor %}
+                    {% for n in car2 %}
+                    <td>{{ n.ABSbrakes }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for n in car1 %}
+                    <td>Infotainment</td>
+                    <td>{{ n.Infotainment }}</td>
+                    {% endfor %}
+                    {% for n in car2 %}
+                    <td>{{ n.Infotainment }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for n in car1 %}
+                    <td>Climate Control</td>
+                    <td>{{ n.ClimateControl }}</td>
+                    {% endfor %}
+                    {% for n in car2 %}
+                    <td>{{ n.ClimateControl }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for n in car1 %}
+                    <td>Cruise Control</td>
+                    <td>{{ n.CruiseControl }}</td>
+                    {% endfor %}
+                    {% for n in car2 %}
+                    <td>{{ n.CruiseControl }}</td>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    {% for n in car1 %}
+                    <td>Traction</td>
+                    <td>{{ n.Traction }}</td>
+                    {% endfor %}
+                    {% for n in car2 %}
+                    <td>{{ n.Traction }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for n in car1 %}
+                    <td>Parking Sense</td>
+                    <td>{{ n.ParkingSense }}</td>
+                    {% endfor %}
+                    {% for n in car2 %}
+                    <td>{{ n.ParkingSense }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for n in car1 %}
+                    <td>Push Start</td>
+                    <td>{{ n.PushStart }}</td>
+                    {% endfor %}
+                    {% for n in car2 %}
+                    <td>{{ n.PushStart }}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% for n in car1 %}
+    <div class = "boxing features price">
+        <table class="table" id = "ptable">
+            <tbody> 
+                <tr>
+        {% endfor %}
+                    {% for n in car1 %}
+                    <th>Price</th>
+                    <th>{{ n.Name }}</th>
+                    {% endfor %}
+                    {% for n in car2 %}
+                    <th>{{ n.Name }}</th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for n in car1 %}
+                    <th>PKR</th>
+                    <td>{{ n.Price }}</td>
+                    {% endfor %}
+                    {% for n in car2 %}
+                    <td>{{ n.Price }}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+<script>
+    var logo = document.getElementById("logo");
+    var links = document.getElementsByClassName("navbar-links");
+    var username = document.getElementById("username");
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() 
+    {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) 
+        {
+            document.getElementById("navbar").style.backgroundColor = "#fbfbf8";
+            document.getElementById("navbar").style.opacity = "1";
+    
+            document.getElementById("navbar").style.opacity = "1";
+            logo.src = "../static/logo.png";
+            username.style.color = "black";
+            for (var i = 0; i < links.length; i++)
+            {
+                links[i].style.color = "black";
+                links[i].style.borderLeft = "1px solid black";
+                links[i].style.borderRight = "1px solid black";
+                links[i].style.opacity = "1";
+            }
+
+            document.getElementById("userlink").style.border = "none";
+        } 
+        else 
+        {
+            document.getElementById("navbar").style.backgroundColor = "rgba(9, 103, 179, 0.915)";
+            logo.src = "../static/whitelogo.png";
+            username.style.color = "white";
+            for (var i = 0; i < links.length; i++)
+            {
+                links[i].style.color = "white";
+                links[i].style.borderLeft = "1px solid rgba(255,255,255,0.3)";
+                links[i].style.borderRight = "1px solid rgba(255,255,255,0.3)";
+            }
+
+            document.getElementById("userlink").style.border = "none";
+        }
+
+
+    }
+    
+    var arr = document.getElementsByTagName('td');
+    for (var i = 0; i < arr.length; i++)
+    {
+        if (arr[i].textContent === 'True')
+        {
+            arr[i].textContent = '✓';
+        }
+
+        else if (arr[i].textContent === 'False')
+        {
+            arr[i].textContent = '✘';
+        }
+    }
+
+</script>
+</html>
