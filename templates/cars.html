@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "shortcut icon" href = "../static/circle.png">
+    <title>Cars</title>
+    <style>
+        @font-face
+        {
+            font-family: gg;
+            src: url('../static/font.ttf');
+        }
+
+        body
+        {
+            margin: 0;
+            font-family: gg;
+            background-color: #fbfbf8;
+            margin-bottom: 2cm;
+            overflow-x:hidden;
+        }
+
+        #navbar
+        {
+            display: inline;
+            background-color: rgba(9, 103, 179, 0.915);
+            width: 100% !important;
+            margin-top: 0px !important;
+            display: block;
+            padding: 10px;
+            padding-top: 0px;
+            position:sticky;
+            top: 0;
+            z-index: 100;
+            transition: 0.4s;
+        }
+        
+        .navbar-links
+        {
+            text-decoration: none;
+            color: white;
+            margin: 0;
+            margin-left: -5px;
+            padding: 8px;
+            padding-top: 15px;
+            padding-right: 20px;
+            padding-left: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            border-left:  1px solid rgba(255,255,255,0.3);
+        }
+
+        .navbar-links:hover
+        {
+            background-color: #2898ee;
+            transition: background-color 100ms linear;
+        }
+
+        #logo
+        {
+            margin-left: 3px;
+            position: relative;
+            z-index: 1;
+            top: 5.5px;
+        }
+
+        #grande
+        {
+            margin-left: 20%;
+        }
+
+        ul 
+        {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: inline;
+        }
+
+        #links
+        {
+            margin-left: 2%;
+        }
+
+        ul li
+        {
+            display: inline;
+            margin:0;
+        }
+
+        .boxes
+        {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 70%;
+            border: 2px solid rgb(94, 31, 160);
+            margin-top: 2%;
+            padding: 0px 10px 0px 10px;
+            border-radius:7px;
+            color: white;
+            background-color: #2898ee;/*rgb(162, 117, 117) */
+            -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .page-links
+        {
+            text-decoration: none;
+        }
+
+        .page-links:hover
+        {
+            opacity: 0.7;
+            transition: opacity 3s linear;
+        }
+
+        .car-imgs
+        {
+            position: relative;
+            bottom: 30px;
+            left: 600px;
+            /* float:right;
+            background-color: #fbfbf8;*/
+            /* border: 2px solid #fbfbf8; */
+        }
+
+        #userimg
+        {
+            /* position: relative;
+            left: 800px;
+            top: 7px; */
+        }
+
+        #username
+        {
+            color: white;
+            position: relative;
+            /* left: 820px; */
+        }
+
+        a
+        {
+            color: white;
+        }
+
+        .wishbtn
+        {
+            background-color: white;
+            position: relative;
+            left: 900px;
+        }
+
+        .wishbtn:active
+        {
+            background-color: red;
+        }
+
+        
+        #filter_form
+        {
+            position: relative;
+            top: 10px;
+            margin-left: auto;
+            margin-right: auto; 
+            display: block;
+        }
+
+        #sort_dd ,#filter_dd
+        {
+            color: #2898ee;
+            font-family: gg;
+            border:2px solid black;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        #filter_dd, #button
+        {
+            margin-left: 2px;
+        }
+
+        #up,#low
+        {
+            border:2px solid black;
+            border-radius: 5px;
+            margin-top: 5px;
+            font-family: gg;
+        }
+
+        #userlink
+        {
+            position: relative;
+            left: 400px;
+            border: none;
+            padding-top: 15px;
+        }
+
+        #userlink:hover
+        {
+            background-color: rgba(9, 103, 179, 0.915);
+        }
+
+        .sort-filter
+        {
+            /* margin-left: auto;
+            margin-right: auto;  */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* padding: 3px; */
+        }
+
+        #button
+        {
+            border-radius: 5px;
+            background-color: #2898ee;
+            color: #fbfbf8;
+            font-family: gg;
+            padding: 5px;
+        }
+
+        #comp, #engin
+        {
+            color: #2898ee;
+            font-family: gg;
+            border:2px solid black;
+            border-radius: 5px;
+            width: 352px;
+            padding: 5px;
+            text-align: center;
+            /* margin-left: auto; */
+            margin-right: auto;
+            display: block;
+            /* padding: 5px; */
+        }
+
+        small
+        {
+            /* background-color: red; */
+            /* left: 60px; */
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id = "navbar"> 
+        <ul>   
+            <li><a href = "Home"><img width = "110px" id = "logo" src = "../static/whitelogo.png"></a></li>
+        </ul>
+        <ul id = "links">
+            <li><a class = "navbar-links" href = "Home">Home</a></li>
+            <li><a class = "navbar-links" href = "#">Cars</a></li>
+            <li><a class = "navbar-links" href = "Reviews">Reviews</a></li>
+            <li><a class = "navbar-links" href = "Comparison">Comparison</a></li>
+            <li><a class = "navbar-links" href = "On-Road Price">On-Road Price</a></li>
+            <li><a class = "navbar-links" href = "Contact">Contact</a></li>
+            <li><a class = "navbar-links" id = "userlink" href = "Wishlist"><img id = "userimg" width = "30px" src = "../static/usericon.png"><span id = "username">{{ user_name_recieved }}</span></a></li>
+            
+        </ul>
+    </div>
+    {% for s in favourites %}
+        <input style = "visibility: hidden" class = "favourites" value = {{ s }}>
+    {% endfor %}
+
+    
+    <div>
+        <form id="filter_form" action = "{{ url_for("carz")}}" method = "post">
+            <div class = "sort-filter"><select name="sort" id="sort_dd">
+                <option value="noneS" selected disabled hidden>Sort</option>
+                <option value="priceA">By Price Ascending</option>
+                <option value="priceD">By Price Descending</option>
+                <option value="yearA">By Year Ascending</option>
+                <option value="yearD">By Year Descending</option>
+
+            </select>
+            <select name="filter" id="filter_dd" onchange="filterfunc()">
+              <option value="noneF" selected disabled hidden>Filter</option>
+              <option value="Price" name="pricedd">By Price</option>
+              <option value="Company" name="companydd">By Company</option>
+              <option value="Engine">By Engine Capacity</option>
+            </select>
+            <button id="button" type="submit">Apply</button>
+            </div>
+            <br>
+            <div class = "sort-filter">
+
+                <div style = "display: none" id="input_button"> 
+                    <input id = "low" name = "lowlimit" type = "number" placeholder="From">  
+                    
+                    <input id = "up" name = "uplimit" type = "number" placeholder="To">
+                </div>
+            </div>
+            <div class = "sort-filter">
+            <div class="flashes">
+                {% for message in get_flashed_messages()%}
+                <br><small style = "position:relative; top: 7% ;color: red;">{{ message|safe }}</small>
+                {% endfor %}
+            </div>
+            </div>
+            <div class = "sort-filter">
+            <div style = "display: none;" id = "companySel">
+                <select id = "comp" name = "company">
+                    <option value = "none" selected disabled hidden>Select Company</option>
+                    {% for n in company_dd %}
+                    <option value="{{ n.Company }}">{{ n.Company }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            </div>
+            <div class = "sort-filter">
+            <div style = "display: none;" id = "engineCC">
+                <select id = "engin" name = "engineCC">
+                    <option value = "none" selected disabled hidden>Select Engine Capacity</option>
+                    {% for n in eng_dd %}
+                    <option value="{{ n.Engine }}">{{ n.Engine }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            </div>
+          </form>
+     </div>
+
+     <!-- <a class = "page-links" href = '#'> -->
+     <!-- <div class = "boxes"> -->
+        <!-- <h3>Toyota Corolla Grande 1.8</h3>
+        <img class = "car-imgs" style = "float: right;" width = "350px" id = "grande" src = "../static/GrandeMain.png">
+        <h3>2022</h3>
+        <h3>Cost: </h3> -->
+        <table class="table">
+            <thead>
+                <tr>
+                <!-- <th scope="col">Car Name</th>
+                <th scope="col">Engine Capacity</th>
+                <th scope="col">Colour</th>
+                <th scope="col">Type</th>
+                <th scope="col">Make</th>
+                <th scope="col">Fuel Type</th>
+                <th scope="col">Transmission</th>
+                <th scope="col">Horse Power</th>
+                <th scope="col">Torque(Nm)</th>
+                <th scope="col">Boot Capacity(L)</th>
+                <th scope="col">Top Speed(km/h)</th>
+                <th scope="col">Fuel Average(km/l)</th>
+                <th scope="col">Seating Capacity</th>
+                <th scope="col">Tyre Size(in)</th>
+                <th scope="col">Ground Clearence(mm)</th> -->
+                
+                </tr>
+            </thead>
+            <tbody>
+                {% for n in car_arr %}
+                    <tr>
+
+                        <div class = "boxes">
+                            <form id = "wishlist" action="{{ url_for("carz") }}" method="post">
+                                <input name = "like" style = "visibility: hidden" value = "{{ n.Name }}">
+                                <input name = "likem" style = "display: none" value = "{{ n.Model }}">
+                                <button class = "wishbtn" type = "submit">💗</button>
+                            </form>
+                            <a style = "text-decoration: none;" href = "{{ n.Name }}">
+                                <h3>{{ n.Name }}</h3>
+                                <h4>Make  : {{ n.Company }}</h4>
+                                <h4>Model : {{ n.Model }}</h4>
+                                <h4>Price : PKR {{ n.ExFactory }}</h4>
+                                <img id = "slide" class = "car-imgs" width = 400px src = "{{ '../static/' + n.Name + ' ' + n.Model + '.png' }}">
+                            </a>
+                        </div>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+     <!-- </div>  -->
+    </a>
+
+    <script>
+        
+        var logo = document.getElementById("logo");
+        var links = document.getElementsByClassName("navbar-links");
+        var username = document.getElementById("username");
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() 
+        {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) 
+            {
+                document.getElementById("navbar").style.backgroundColor = "#fbfbf8";
+                document.getElementById("navbar").style.opacity = "1";
+        
+                document.getElementById("navbar").style.opacity = "1";
+                logo.src = "../static/logo.png";
+                username.style.color = "black";
+                for (var i = 0; i < links.length; i++)
+                {
+                    links[i].style.color = "black";
+                    links[i].style.borderLeft = "1px solid black";
+                    links[i].style.borderRight = "1px solid black";
+                    links[i].style.opacity = "1";
+                }
+
+                document.getElementById("userlink").style.border = "none";
+            } 
+            else 
+            {
+                document.getElementById("navbar").style.backgroundColor = "rgba(9, 103, 179, 0.915)";
+                logo.src = "../static/whitelogo.png";
+                username.style.color = "white";
+                for (var i = 0; i < links.length; i++)
+                {
+                    links[i].style.color = "white";
+                    links[i].style.borderLeft = "1px solid rgba(255,255,255,0.3)";
+                    links[i].style.borderRight = "1px solid rgba(255,255,255,0.3)";
+                }
+
+                document.getElementById("userlink").style.border = "none";
+            }
+        }
+
+        var btn = document.getElementsByClassName("wishbtn");
+        var fav = document.getElementsByClassName("favourites");
+    
+        for (var i = 0; i < fav.length; i++)
+        {    
+            if (fav[i].value === 1 || fav[i].value === '1')
+            {
+                btn[i].style.backgroundColor = "red";
+            }
+        }
+
+        function filterfunc()
+        {
+
+            var x=document.getElementById('filter_dd');
+            var value=x.options[x.selectedIndex].value;
+            var y=document.getElementById("input_button");
+            var z = document.getElementById("companySel");
+            var a = document.getElementById("engineCC");
+
+            if (value==="Price")
+            {
+                y.style.display = "block";
+            }
+
+            else
+            {
+                y.style.display = "none";
+            }
+
+            if (value === "Company")
+            {
+                z.style.display = "block";
+            }
+
+            else
+            {
+                z.style.display = "none";
+            }
+
+            if (value==="Engine")
+            {
+                a.style.display = "block";
+            }
+            
+            else
+            {
+                a.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

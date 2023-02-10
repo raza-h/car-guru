@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "shortcut icon" href = "../static/circle.png">
+    <title>Reviews</title>
+    <style>
+        @font-face
+        {
+            font-family: gg;
+            src: url('../static/font.ttf');
+        }
+
+        body
+        {
+            margin: 0;
+            font-family: gg;
+            background-color: #fbfbf8/*rgba(192,224,238,0.878)*/;
+            margin-bottom: 1cm;
+            overflow-x:hidden;
+        }
+
+        #navbar
+        {
+            display: inline;
+            background-color: rgba(9, 103, 179, 0.915);
+            width: 100% !important;
+            margin-top: 0px !important;
+            display: block;
+            padding: 10px;
+            padding-top: 0px;
+            position:sticky;
+            top: 0;
+            z-index: 100;
+            transition: 0.4s;
+        }
+        
+        .navbar-links
+        {
+            text-decoration: none;
+            color: white;
+            margin: 0;
+            margin-left: -5px;
+            padding: 8px;
+            padding-top: 15px;
+            padding-right: 20px;
+            padding-left: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            border-left:  1px solid rgba(255,255,255,0.3);
+        }
+
+        .navbar-links:hover
+        {
+            background-color: #2898ee;
+            transition: background-color 100ms linear;
+        }
+
+        #logo
+        {
+            margin-left: 3px;
+            position: relative;
+            z-index: 1;
+            top: 5.5px;
+        }
+
+        #grande
+        {
+            margin-left: 20%;
+        }
+
+        ul 
+        {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: inline;
+        }
+
+        #links
+        {
+            margin-left: 2%;
+        }
+
+        ul li
+        {
+            display: inline;
+            margin:0;
+        }
+
+        .boxes
+        {
+            text-align: center;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 95%;
+            border-bottom: 5px solid #000000;
+            margin-top: 2%;
+            padding: 0px 10px 0px 10px;
+            color: #000000;
+            font-size: 20px;
+            /* font-family: sans-serif; */
+            /* background-color: rgb(255, 255, 255); */
+        }
+
+        .page-links
+        {
+            text-decoration: none;
+        }
+
+        .page-links:hover
+        {
+            opacity: 0.7;
+            transition: opacity 3s linear;
+        }
+
+        th
+        {
+            background-color: #36c;
+            color: white;
+            border: 1px solid black;
+            text-align: center;
+            font-size: 21px;
+            padding: 8px;
+            /* font-family: sans-serif; */
+        }
+        td
+        {
+            color: black;
+            background-color: white;
+            border: 1px solid black;
+            text-align: center;
+            font-size: 20px;
+            padding: 8px;
+            /* font-family: sans-serif; */
+        }
+
+        #width-maker
+        {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 55%;
+        }
+
+
+        *
+        {
+            box-sizing: border-box;
+        }
+
+        .row {
+            margin-top: 2%;
+            background-color: #2898ee;
+            margin-left:55px;
+            margin-right:55px;
+            border: 3px solid black;
+            border-radius:10px;
+        }
+        
+        .column {
+            float: left;
+            width: 50%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .column tr:nth-child(even) th
+        {
+            background-color: #25c;
+        }
+
+        .column tr:nth-child(odd) td
+        {
+            background-color: #fff;
+        }
+        
+        .column tr:nth-child(even) td
+        {
+            background-color: #eee;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .boxHeader
+        {
+            background-color: #333;
+            color: white;
+            border: 2px solid black;
+            text-align: center;
+            /* font-family: inherit; */
+            font-size: 25px;
+            padding: 8px;
+            /* font-family: sans-serif; */
+        }
+
+        #select_car
+        {
+            margin: 5%;
+            color: black;
+            text-align: center;
+            font-size: 35px;
+            color: rgba(9, 103, 179, 0.915);
+        }
+        
+        .cars_dd
+        {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 60%;
+            border: 2px solid rgba(9, 103, 179, 0.915);
+            height: 50px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 2cm;
+            font-family: gg;
+            font-size: 18px;
+            color: rgba(9, 103, 179, 0.915);
+        }
+
+        #car_submit
+        {
+            height: 50px;
+            position: relative;
+            bottom: 6px;
+            width: 8%;
+            border-radius: 10px;
+            background-color: white;
+            color: rgba(9, 103, 179, 0.915);
+            font-size: 20px;
+        }
+
+        #ReviewBox
+        {
+            /* display: block; */
+            margin-left: auto;
+            margin-right: auto;
+            width: 95%;
+            margin-top: 2%;
+            padding:   10px; 
+            color: #000000;
+            /* font-size: 25px; */
+            font-family: gg;
+            border-radius: 10px;
+            background-color: rgba(9, 103, 179, 0.915);
+            color: white;
+            -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .Rhead
+        {
+            display: block;
+            width: 99%;
+            /* margin-top: 2%; */
+            margin-left: 3px;
+            background-color: white;
+            color:black;
+            font-size: 15px;
+            padding: 10px;
+            text-align: justify;
+            /* font-family: sans-serif; */
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        #userimg
+        {
+            /* position: relative;
+            left: 800px;
+            top: 7px; */
+        }
+
+        #username
+        {
+            color: white;
+            position: relative;
+            /* left: 820px; */
+        }
+        
+        h1
+        {
+            margin-top: 1cm;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            text-align: center;
+        }
+
+        #button
+        {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            background-color: rgba(9, 103, 179, 0.915);
+            border: 3px solid rgb(218, 222, 232);
+            color: white;
+            width: 60%;
+            height: 50px;
+            border-radius: 10px;
+            font-family: gg;
+            font-size: 18px;
+        }
+
+        #userlink
+        {
+            position: relative;
+            left: 400px;
+            border: none;
+            padding-top: 15px;
+        }
+
+        #userlink:hover
+        {
+            background-color: rgba(9, 103, 179, 0.915);
+        }
+
+        .v-link
+        {
+            text-decoration: none;
+            color: black;
+        }
+
+        #frame
+        {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            border: 1px solid #2898ee;
+            border-radius: 5px;
+            width: 70%;
+            height: 500px;
+            margin-bottom: 0.7cm;
+        }
+
+        #video
+        {
+            /* padding: 5px;
+            background-color: #2898ee;
+            border-radius: 5px; */
+        }
+        
+    </style>
+</head>
+<body>
+    <div id = "navbar"> 
+        <ul>   
+        <li><a href = "Home"><img width = "110px" id = "logo" src = "../static/whitelogo.png"></a></li>
+        </ul>
+        <ul id = "links">
+            <li><a class = "navbar-links" href = "Home">Home</a></li>
+            <li><a class = "navbar-links" href = "Cars">Cars</a></li>
+            <li><a class = "navbar-links" href = "#">Reviews</a></li>
+            <li><a class = "navbar-links" href = "Comparison">Comparison</a></li>
+            <li><a class = "navbar-links" href = "On-Road Price">On-Road Price</a></li>
+            <li><a class = "navbar-links" href = "Contact">Contact</a></li>
+            <li><a class = "navbar-links" id = "userlink" href = "Wishlist"><img id = "userimg" width = "30px" src = "../static/usericon.png"><span id = "username">{{ user_name_recieved }}</span></a></li>
+        </ul>
+     </div>
+     
+    <h1>Reviews</h1>
+    <br>
+    <hr>
+
+     <form id="car_form" action="{{ url_for("reviewz")}}" method="post">
+        <select name="cars_dropdown" class="cars_dd">
+            <option value="none" selected disabled hidden>Select a Car</option>
+       {% for n in ddm %}
+           <option value="{{ n.CarName }}">{{ n.CarName }}</option>
+       {% endfor %}
+       </select>
+       <div>
+           <button id = "button" type="submit">Get Review</button>
+        </div>
+     </form>
+     <div style = "visibility: hidden;" id="ReviewBox">
+          <h2 style="color: white ;">{{ name }}<h2>
+        
+            <div class="Rhead">
+                <h3 style = "text-align: center" class = "v-link">Expert Review</h3>
+                {% for n in review %}
+                    <p>{{ n.Review }}</p>
+                {% endfor %}
+                <br>
+            </div>
+            {% for n in link %}
+            <div class="Rhead">
+            <!-- <h3 id = "review1"></h3> -->
+            {% for n in review %}
+            {% endfor %}
+            {% for n in link %}
+                <br>
+                <div id = "video">
+                    <h3 style = "text-align: center" class = "v-link">Video</h3>
+                    <br>
+                    <iframe src = "{{ n.Link }}" id = "frame" name="display-frame"></iframe>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+      <p id = "dis" style = "display: none">{{ display }}</p>
+     
+      
+    <script>
+        var disp = document.getElementById('ReviewBox');
+        var a = document.getElementById('dis');
+
+        if (dis.textContent === '1')
+        {
+            disp.style.visibility = "visible";
+        }
+
+        var logo = document.getElementById("logo");
+        var links = document.getElementsByClassName("navbar-links");
+        var username = document.getElementById("username");
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() 
+        {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) 
+            {
+                document.getElementById("navbar").style.backgroundColor = "#fbfbf8";
+                document.getElementById("navbar").style.opacity = "1";
+        
+                document.getElementById("navbar").style.opacity = "1";
+                logo.src = "../static/logo.png";
+                username.style.color = "black";
+                for (var i = 0; i < links.length; i++)
+                {
+                    links[i].style.color = "black";
+                    links[i].style.borderLeft = "1px solid black";
+                    links[i].style.borderRight = "1px solid black";
+                    links[i].style.opacity = "1";
+                }
+
+                document.getElementById("userlink").style.border = "none";
+            } 
+            else 
+            {
+                document.getElementById("navbar").style.backgroundColor = "rgba(9, 103, 179, 0.915)";
+                logo.src = "../static/whitelogo.png";
+                username.style.color = "white";
+                for (var i = 0; i < links.length; i++)
+                {
+                    links[i].style.color = "white";
+                    links[i].style.borderLeft = "1px solid rgba(255,255,255,0.3)";
+                    links[i].style.borderRight = "1px solid rgba(255,255,255,0.3)";
+                }
+
+                document.getElementById("userlink").style.border = "none";
+            }
+        }
+    </script>
+</body>
+</html>
