@@ -1,14 +1,11 @@
-from fnmatch import fnmatchcase
-from colorama import Cursor
-from flask import Flask,request,g ,render_template,flash,session,redirect,url_for
-import pyodbc
+from flask import Flask,request ,render_template,flash,session,redirect,url_for
 import os
 from google.cloud.sql.connector import Connector
 import sqlalchemy
 from sqlalchemy import text
 import os
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:/Users/HP/AppData/Roaming/gcloud/legacy_credentials/razah12145@gmail.com/adc.json"
+#os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:/Users/HP/AppData/Roaming/gcloud/legacy_credentials/razah12145@gmail.com/adc.json"
 
 INSTANCE_CONNECTION_NAME = "vaulted-gate-377212:us-central1:car-guru"
 DB_USER = "sqlserver"
@@ -105,15 +102,12 @@ def Login():
 @carguru.route('/Home')
 def Home():
     newsdata = []
-    conn = connection()
-    cursor = conn.cursor()
+
     results = executeAndReturnManyRows("SELECT * FROM newss")
     user_name = request.args.get('user_name')
     print(results)
     for row in results:
         newsdata.append({"newsdate":row[0],"title":row[1], "link": ''})
-    conn.commit()
-    conn.close()
     
     return render_template("home.html",newsdata = newsdata,user_name_recieved = ud.username)
 
@@ -127,13 +121,14 @@ def Register():
         phone = request.form.get("phone")
         print("Your username is "+username +", Password: "+ password+" Fullname: "+fullname+" Email: "+email+" Phone: "+phone)
         if fullname == '' or email == '' or password == '' or username == '' or phone == '':
-            flash("Error! Input fields can't be empty") 
+            flash("Error! Input fields can't be empty")
         #conn = connection()
         #cursor = conn.cursor()
-        executeInsertquery("Insert into users values('{0}','{1}','{2}','{3}','{4}')".format(fullname,email,password,username,phone))
         results = executeAndReturnOneRow("SELECT * FROM Users where username = '{0}' or password = '{1}' or email = '{2}' or phone = '{3}'".format(username, password, email, phone))
         if results:
             flash("Error! Username or Password or Email or Phone Number already exists")
+        else:
+            executeInsertquery("Insert into users values('{0}','{1}','{2}','{3}','{4}')".format(fullname,email,password,username,phone))
 
         #conn.commit()
         #conn.close() 
@@ -149,8 +144,6 @@ def carz():
     wishcars = []
     favourites = []
 
-    conn = connection()
-    cursor = conn.cursor()
     results = executeAndReturnManyRows('select * from companies')
     for row2 in results:
         company_dd.append({"Company":row2[0]})
@@ -257,8 +250,7 @@ def carz():
             favourites.append(0)
         
     print(favourites)
-    conn.commit()
-    conn.close()
+
     return render_template("cars.html", company_dd = company_dd, eng_dd = eng, car_arr = cars ,favourites = favourites,user_name_recieved=ud.username)
 
 
@@ -269,8 +261,7 @@ def reviewz():
     rvz = []
     link = []
     display = 0
-    conn =connection()
-    cursor = conn.cursor()
+
     results = executeAndReturnManyRows("select * from carNames")
     for row in results:
         ddm.append({"CarName":row[0]})
@@ -278,8 +269,7 @@ def reviewz():
     if request.method == "POST":
         display = 1
         name = request.form.get("cars_dropdown")
-        conn = connection()
-        cursor = conn.cursor()
+
         results2 = executeAndReturnManyRows("execute show_review @cname = '{0}'".format(name))
         for row in results2:
             rvz.append({"Review":row[0]})
@@ -289,8 +279,6 @@ def reviewz():
             link.append({"Link": row[0]})
 
 
-    conn.commit()
-    conn.close()
     return render_template("reviews.html", ddm = ddm, review = rvz,name = name, display = display, link = link, user_name_recieved = ud.username)
 
 @carguru.route('/Comparison',methods =["GET", "POST"])
@@ -298,8 +286,7 @@ def comparison():
     car1 = []
     car2 = []
     ddm = []
-    conn = connection()
-    cursor = conn.cursor()
+
     results = executeAndReturnManyRows("select * from carNames")
     for row in results:
         ddm.append({"CarName":row[0]})
@@ -314,8 +301,7 @@ def comparison():
         for row in results3:
             car2.append({"Name":row[1], "Engine":row[2], "Type":row[3], "Model":row[4], "Company":row[5], "FuelType":row[6],          "Transmission":row[7], "HorsePower":row[8], "Torque":row[9], "BootCapacity":row[10], "TopSpeed":row[11],
                      "FuelAvg":row[12], "SeatingCapacity":row[13], "TyreSize":row[14], "GroundClearence":row[15] , "AirBags":row[18] , "SunRoof":row[19],"ABSbrakes":row[20],"Infotainment":row[21],"ClimateControl":row[22],"CruiseControl":row[23],"Traction":row[24],"ParkingSense":row[25],"PushStart":row[26], "Price": row[27]})
-        conn.commit()
-        conn.close()
+
     return render_template("comparison.html",car1 = car1,car2 = car2,ddm = ddm, user_name_recieved = ud.username)
 
 @carguru.route('/On-Road Price', methods =["GET", "POST"])
@@ -326,8 +312,7 @@ def totalcost():
     ddm2 = []
     orp = []
     display = 0
-    conn =connection()
-    cursor = conn.cursor()
+
     results = executeAndReturnManyRows("Select * from carNames")
     for row in results:
         ddm.append({"CarName":row[0]})
@@ -340,22 +325,17 @@ def totalcost():
         display = 1
         name = request.form.get("cars_dropdown")
         city = request.form.get("city_dropdown")
-        conn = connection()
-        cursor = conn.cursor()
+
         results3 = executeAndReturnManyRows("execute total_cost @cname='{0}', @ctname='{1}'".format(name,city))
         for row in results3:
             orp.append({"totalPrice":row[0]})
 
-    conn.commit()
-    conn.close()
 
     return render_template("orprice.html", ddm = ddm, ddm2 = ddm2, name = name, orp = orp, display = display, user_name_recieved = ud.username)
     
 @carguru.route('/Wishlist')
 def wishlist():
     cars = []
-    conn = connection()
-    cursor = conn.cursor()
     results = executeAndReturnManyRows("execute getwishlist @uname = '{0}'".format(ud.username))
     for row in results:
         cars.append({"Name":row[0],"Company":row[1], "Model":row[2], "ExFactory":row[3]})
@@ -365,8 +345,6 @@ def wishlist():
     for row in results2:
         userinfo.append({"Name":row[0],"Email":row[1], "Password":row[2], "Username":row[3], "Phone":row[4]})
 
-    conn.commit()
-    conn.close()
     return render_template("wishlist.html",cars = cars, userinfo = userinfo, user_name_recieved = ud.username)
 
 @carguru.route('/Contact', methods =["GET", "POST"])
@@ -375,19 +353,13 @@ def Contact():
 
     if request.method == "POST":
         feedback = request.form.get("feedback")
-        conn = connection()        
-        cursor = conn.cursor()
         executeInsertquery("INSERT INTO Contacts VALUES('{0}', '{1}')".format(ud.username, feedback))
-        conn.commit()
-        conn.close()
 
     return render_template("contact.html", user_name_recieved = ud.username)
 
 @carguru.route('/<name>')
 def AllCars(name):
     specs = []
-    conn = connection()
-    cursor = conn.cursor()
     results =  executeAndReturnManyRows("execute carDetailz @cname = '{0}'".format(name))
     for row in results:
          specs.append({"NAME":row[1], "ENGINE":row[2], "TYPE":row[3], "MODEL":row[4], "COMPANY":row[5], "FUELTYPE":row[6],
@@ -400,17 +372,16 @@ def AllCars(name):
 
     return render_template("altis.html",specs = specs, user_name_recieved = ud.username)
 
-def connection():
-    conn = pyodbc.connect('Driver={SQL SERVER};'
-                      'Server=DESKTOP-C8I7AT8;'
-                      'Database=Project;'
-                      'Trusted_Connection=yes;')
-    #return conn
-    #os.environ['DATABASE_URL'] = 'postgres://csxmxamzdfsrjg:85baef34b4aed44992b0a8594fbcd61f7809254199dc7b9432ce690544b3838f@ec2-107-23-76-12.compute-1.amazonaws.com:5432/d2oneh81j2ljo8'
-    #DATABASE_URL = os.environ['DATABASE_URL']
-    #conn = psycopg2.connect(DATABASE_URL, sslmode = 'require')
-    return conn
-
+# def connection():
+#     conn = pyodbc.connect('Driver={SQL SERVER};'
+#                       'Server=DESKTOP-C8I7AT8;'
+#                       'Database=Project;'
+#                       'Trusted_Connection=yes;')
+#     #return conn
+#     #os.environ['DATABASE_URL'] = 'postgres://csxmxamzdfsrjg:85baef34b4aed44992b0a8594fbcd61f7809254199dc7b9432ce690544b3838f@ec2-107-23-76-12.compute-1.amazonaws.com:5432/d2oneh81j2ljo8'
+#     #DATABASE_URL = os.environ['DATABASE_URL']
+#     #conn = psycopg2.connect(DATABASE_URL, sslmode = 'require')
+#     return conn
 
 if __name__ == '__main__':
     server_port = os.environ.get('PORT', '8080')
